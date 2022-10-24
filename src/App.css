@@ -1,0 +1,35 @@
+.main {
+  width: 25rem;
+  margin-top: 5rem;
+  box-shadow: 0.1rem 0.1rem 0.3rem 0.3rem;
+  border-radius: 0.8rem;
+  align-items: center;
+  justify-content: center;
+  background-color: #202020;
+}
+
+.wrapper {
+  height: 20rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.wrapper > * {
+  flex-grow: 1;
+  flex-basis: 25%;
+}
+
+.screen {
+  margin: 0 auto;
+  line-height: 4rem;
+  height: 5rem;
+  text-align: right;
+  font-weight: bold;
+  color: #eeeeee;
+  overflow: auto;
+}
+
+.display {
+  margin: 0.5rem 1rem;
+}

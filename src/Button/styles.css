@@ -1,0 +1,12 @@
+button {
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.button {
+  background-color: #808080;
+}
+
+.orange {
+  background-color: #d65a31;
+}
