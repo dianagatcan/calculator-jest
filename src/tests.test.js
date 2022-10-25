@@ -1,4 +1,4 @@
-import { sumNrs, subNrs } from "./App";
+import { sumNrs, subNrs, multiplyNrs } from "./App";
 
 describe("sumNrs", () => {
   test("should add two positive numbers properly", () => {
