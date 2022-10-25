@@ -18,6 +18,10 @@ export function divideNrs(a, b) {
   return a / b;
 }
 
+export function powerNrs(a, b) {
+  return a ** b;
+}
+
 export default function App() {
   let [calc, setCalc] = useState({
     sign: "",
@@ -26,11 +30,11 @@ export default function App() {
     result: undefined,
   });
   let [error, setErrors] = useState(false);
-  const operations = ["*", "/", "+", "-"];
-  const appliers = ["√", "^2", "%"];
+  const operations = ["*", "/", "+", "-", "^"];
+  const appliers = ["√", "%"];
   const keys = [
     "√",
-    "^2",
+    "^",
     "%",
     "*",
     7,
@@ -132,6 +136,14 @@ export default function App() {
           num2: undefined,
           sign: "",
           result: divideNrs(calc.num1, calc.num2),
+        });
+        break;
+      case "^":
+        setCalc({
+          num1: undefined,
+          num2: undefined,
+          sign: "",
+          result: powerNrs(calc.num1, calc.num2),
         });
         break;
       default:

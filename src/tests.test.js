@@ -1,4 +1,4 @@
-import { sumNrs, subNrs, multiplyNrs, divideNrs } from "./App";
+import { sumNrs, subNrs, multiplyNrs, divideNrs, powerNrs } from "./App";
 
 describe("sumNrs", () => {
   test("should add two positive numbers properly", () => {
@@ -66,10 +66,10 @@ describe("divideNrs", () => {
 
 describe("powerNrs", () => {
   test("should exponentiate two whole numbers", () => {
-    expect(powerNrs(8, 3).toBe(512));
+    expect(powerNrs(8, 3)).toBe(512);
   });
   test("should exponentiate decimal numbers", () => {
-    expect(powerNrs(2.3, 2)).toBe(5.29);
+    expect(powerNrs(2.1, 2)).toBe(4.41);
   });
   test("should handle 0 properly", () => {
     expect(powerNrs(5, 0)).toBe(1);
