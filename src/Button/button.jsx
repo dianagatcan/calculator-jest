@@ -7,7 +7,7 @@ export default function Button(props) {
   };
   return (
     <button
-      onClick={props.handleClick}
+      onClick={props.onClick}
       className={greyButtons(props.text) ? "button" : "orange"}
     >
       {props.text}
