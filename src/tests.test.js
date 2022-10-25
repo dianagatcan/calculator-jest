@@ -35,3 +35,17 @@ describe("subNrs", () => {
     expect(subNrs(2, 0)).toBe(2);
   });
 });
+
+describe("multiplyNrs", () => {
+  test("shuould multiply two whole numbers", () => {
+    expect(multiplyNrs(5, 3)).toBe(15);
+  });
+  test("should multiply two decimal numbers", () => {
+    expect(multiplyNrs(5, 3.5)).toBe(17.5);
+    expect(multiplyNrs(2.3, 8)).toBe(18.4);
+  });
+  test("should handle 0 properly", () => {
+    expect(multiplyNrs(0, 2)).toBe(0);
+    expect(multiplyNrs(8, 0)).toBe(0);
+  });
+});
