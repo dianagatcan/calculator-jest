@@ -5,6 +5,9 @@ import Button from "./Button/button";
 export function sumNrs(a, b) {
   return a + b;
 }
+export function subNrs(a, b) {
+  return a - b;
+}
 
 export default function App() {
   let [calc, setCalc] = useState({
@@ -86,6 +89,14 @@ export default function App() {
           num2: 0,
           sign: "",
           result: sumNrs(calc.num1, calc.num2),
+        });
+        break;
+      case "-":
+        setCalc({
+          num1: 0,
+          num2: 0,
+          sign: "",
+          result: subNrs(calc.num1, calc.num2),
         });
         break;
       default:
