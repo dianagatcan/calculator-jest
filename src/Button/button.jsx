@@ -7,8 +7,15 @@ export default function Button(props) {
   };
   return (
     <button
+      disabled={props.disabled}
       onClick={props.onClick}
-      className={greyButtons(props.text) ? "button" : "orange"}
+      className={
+        !props.disabled
+          ? greyButtons(props.text)
+            ? "button"
+            : "orange"
+          : "button"
+      }
     >
       {props.text}
     </button>

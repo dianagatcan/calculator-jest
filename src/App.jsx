@@ -2,6 +2,10 @@ import "./App.css";
 import React, { useState } from "react";
 import Button from "./Button/button";
 
+export function sumNrs(a, b) {
+  return a + b;
+}
+
 export default function App() {
   let [calc, setCalc] = useState({
     sign: "",
@@ -31,7 +35,6 @@ export default function App() {
     ".",
     0,
     "C",
-    "=",
   ];
 
   function isNum1() {
@@ -75,6 +78,21 @@ export default function App() {
     }
   }
 
+  function handleEqual() {
+    switch (calc.sign) {
+      case "+":
+        setCalc({
+          num1: 0,
+          num2: 0,
+          sign: "",
+          result: sumNrs(calc.num1, calc.num2),
+        });
+        break;
+      default:
+        break;
+    }
+  }
+
   function handlePoint() {
     if (isNum1()) {
       setCalc({
@@ -104,10 +122,11 @@ export default function App() {
     <div className="main">
       <div className="screen">
         <h1 className="display">
-          {
-            //implement differently after equals
-            calc.num2 ? calc.num2 : calc.num1
-          }
+          {calc.result && !calc.num1
+            ? calc.result
+            : calc.num2
+            ? calc.num2
+            : calc.num1}
         </h1>
       </div>
       <div className="wrapper">
@@ -121,6 +140,15 @@ export default function App() {
             }}
           />
         ))}
+        <Button
+          key={99}
+          id={99}
+          text="="
+          disabled={!calc.num2 ? true : false}
+          onClick={() => {
+            handleEqual();
+          }}
+        ></Button>
       </div>
     </div>
   );
