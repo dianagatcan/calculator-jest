@@ -1,4 +1,4 @@
-import { sumNrs, subNrs, multiplyNrs } from "./App";
+import { sumNrs, subNrs, multiplyNrs, divideNrs } from "./App";
 
 describe("sumNrs", () => {
   test("should add two positive numbers properly", () => {
@@ -47,5 +47,20 @@ describe("multiplyNrs", () => {
   test("should handle 0 properly", () => {
     expect(multiplyNrs(0, 2)).toBe(0);
     expect(multiplyNrs(8, 0)).toBe(0);
+  });
+});
+
+describe("divideNrs", () => {
+  test("shuould divide two whole numbers", () => {
+    expect(divideNrs(9, 3)).toBe(3);
+    expect(divideNrs(5, 2)).toBe(2.5);
+  });
+  test("should divide two decimal numbers", () => {
+    expect(divideNrs(5.5, 2)).toBe(2.75);
+    expect(divideNrs(9.9, 3.3)).toBe(3);
+  });
+  test("should handle 0 properly", () => {
+    expect(divideNrs(0, 2)).toBe(0);
+    expect(divideNrs(8, 0)).toBe(Infinity);
   });
 });
