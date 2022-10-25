@@ -14,13 +14,18 @@ export function multiplyNrs(a, b) {
   return a * b;
 }
 
+export function divideNrs(a, b) {
+  return a / b;
+}
+
 export default function App() {
   let [calc, setCalc] = useState({
     sign: "",
-    num1: 0,
-    num2: 0,
-    result: 0,
+    num1: undefined,
+    num2: undefined,
+    result: undefined,
   });
+  let [error, setErrors] = useState(false);
   const operations = ["*", "/", "+", "-"];
   const appliers = ["√", "^2", "%"];
   const keys = [
@@ -46,10 +51,10 @@ export default function App() {
   ];
 
   function isNum1() {
-    return calc.num2 === 0 && calc.sign === "";
+    return calc.num2 === undefined && calc.sign === "";
   }
   function isNum2() {
-    return calc.num1 !== 0 && calc.sign !== "";
+    return calc.num1 !== undefined && calc.sign !== "";
   }
 
   function handleNum(btn) {
@@ -57,13 +62,19 @@ export default function App() {
     if (isNum1()) {
       setCalc({
         ...calc,
-        num1: Number(calc.num1.toString() + btn.toString()),
+        num1:
+          calc.num1 === undefined
+            ? btn
+            : Number(calc.num1.toString() + btn.toString()),
       });
     }
     if (isNum2()) {
       setCalc({
         ...calc,
-        num2: Number(calc.num2.toString() + btn.toString()),
+        num2:
+          calc.num2 === undefined
+            ? btn
+            : Number(calc.num2.toString() + btn.toString()),
       });
     }
   }
@@ -71,14 +82,14 @@ export default function App() {
   function handleClear() {
     setCalc({
       sign: "",
-      num1: 0,
-      num2: 0,
-      result: 0,
+      num1: undefined,
+      num2: undefined,
+      result: undefined,
     });
   }
 
   function handleOperation(btn) {
-    if (calc.num1 !== 0 && calc.num2 === 0) {
+    if (calc.num1 !== undefined && calc.num2 === undefined) {
       setCalc({
         ...calc,
         sign: btn,
@@ -90,26 +101,37 @@ export default function App() {
     switch (calc.sign) {
       case "+":
         setCalc({
-          num1: 0,
-          num2: 0,
+          num1: undefined,
+          num2: undefined,
           sign: "",
           result: sumNrs(calc.num1, calc.num2),
         });
         break;
       case "-":
         setCalc({
-          num1: 0,
-          num2: 0,
+          num1: undefined,
+          num2: undefined,
           sign: "",
           result: subNrs(calc.num1, calc.num2),
         });
         break;
       case "*":
         setCalc({
-          num1: 0,
-          num2: 0,
+          num1: undefined,
+          num2: undefined,
           sign: "",
           result: multiplyNrs(calc.num1, calc.num2),
+        });
+        break;
+      case "/":
+        if (calc.num2 === 0) {
+          setErrors(true);
+        }
+        setCalc({
+          num1: undefined,
+          num2: undefined,
+          sign: "",
+          result: divideNrs(calc.num1, calc.num2),
         });
         break;
       default:
@@ -133,6 +155,7 @@ export default function App() {
   }
 
   function decideFunc(btn) {
+    setErrors(false);
     if (btn === ".") {
       handlePoint();
     } else if (btn === "C") {
@@ -146,12 +169,15 @@ export default function App() {
     <div className="main">
       <div className="screen">
         <h1 className="display">
-          {calc.result && !calc.num1
+          {calc.result !== undefined &&
+          calc.result !== Infinity &&
+          calc.num1 === undefined
             ? calc.result
-            : calc.num2
+            : calc.num2 !== undefined
             ? calc.num2
             : calc.num1}
         </h1>
+        {error && <p>Can not divide by 0</p>}
       </div>
       <div className="wrapper">
         {keys.map((btn, index) => (
@@ -168,7 +194,7 @@ export default function App() {
           key={99}
           id={99}
           text="="
-          disabled={!calc.num2 ? true : false}
+          disabled={!calc.sign ? true : false}
           onClick={() => {
             handleEqual();
           }}

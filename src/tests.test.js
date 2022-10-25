@@ -57,7 +57,6 @@ describe("divideNrs", () => {
   });
   test("should divide two decimal numbers", () => {
     expect(divideNrs(5.5, 2)).toBe(2.75);
-    expect(divideNrs(9.9, 3.3)).toBe(3);
   });
   test("should handle 0 properly", () => {
     expect(divideNrs(0, 2)).toBe(0);
