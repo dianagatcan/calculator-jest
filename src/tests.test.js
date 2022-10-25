@@ -63,3 +63,16 @@ describe("divideNrs", () => {
     expect(divideNrs(8, 0)).toBe(Infinity);
   });
 });
+
+describe("powerNrs", () => {
+  test("should exponentiate two whole numbers", () => {
+    expect(powerNrs(8, 3).toBe(512));
+  });
+  test("should exponentiate decimal numbers", () => {
+    expect(powerNrs(2.3, 2)).toBe(5.29);
+  });
+  test("should handle 0 properly", () => {
+    expect(powerNrs(5, 0)).toBe(1);
+    expect(powerNrs(0, 5)).toBe(0);
+  });
+});
