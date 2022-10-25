@@ -1,7 +1,6 @@
 import "./App.css";
 import React, { useState } from "react";
 import Button from "./Button/button";
-import { calculateNewValue } from "@testing-library/user-event/dist/utils";
 
 export default function App() {
   let [calc, setCalc] = useState({
