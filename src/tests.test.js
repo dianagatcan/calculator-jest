@@ -89,7 +89,7 @@ describe("sqrtNr", () => {
     expect(sqrtNr(9)).toBe(3);
   });
   test("should square root a decimal number", () => {
-    expect(sqrt(17.64).toBe(4, 2));
+    expect(sqrtNr(17.64)).toBe(4.2);
   });
   test("should handle 0 properly", () => {
     expect(sqrtNr(0)).toBe(0);

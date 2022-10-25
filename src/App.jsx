@@ -22,6 +22,10 @@ export function powerNrs(a, b) {
   return a ** b;
 }
 
+export function sqrtNr(a) {
+  return Math.sqrt(a);
+}
+
 export default function App() {
   let [calc, setCalc] = useState({
     sign: "",
@@ -31,7 +35,6 @@ export default function App() {
   });
   let [error, setErrors] = useState(false);
   const operations = ["*", "/", "+", "-", "^"];
-  const appliers = ["√", "%"];
   const keys = [
     "√",
     "^",
@@ -166,9 +169,20 @@ export default function App() {
     }
   }
 
+  function handleSqrt() {
+    setCalc({
+      num1: undefined,
+      num2: undefined,
+      sign: "",
+      result: sqrtNr(calc.num1),
+    });
+  }
+
   function decideFunc(btn) {
     setErrors(false);
-    if (btn === ".") {
+    if (btn === "√") {
+      handleSqrt();
+    } else if (btn === ".") {
       handlePoint();
     } else if (btn === "C") {
       handleClear();
