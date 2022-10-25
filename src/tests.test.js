@@ -1,4 +1,11 @@
-import { sumNrs, subNrs, multiplyNrs, divideNrs, powerNrs } from "./App";
+import {
+  sumNrs,
+  subNrs,
+  multiplyNrs,
+  divideNrs,
+  powerNrs,
+  sqrtNr,
+} from "./App";
 
 describe("sumNrs", () => {
   test("should add two positive numbers properly", () => {
@@ -74,5 +81,17 @@ describe("powerNrs", () => {
   test("should handle 0 properly", () => {
     expect(powerNrs(5, 0)).toBe(1);
     expect(powerNrs(0, 5)).toBe(0);
+  });
+});
+
+describe("sqrtNr", () => {
+  test("should square root a whole number", () => {
+    expect(sqrtNr(9)).toBe(3);
+  });
+  test("should square root a decimal number", () => {
+    expect(sqrt(17.64).toBe(4, 2));
+  });
+  test("should handle 0 properly", () => {
+    expect(sqrtNr(0)).toBe(0);
   });
 });
