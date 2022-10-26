@@ -4,9 +4,13 @@ button {
 }
 
 .button {
-  background-color: #808080;
+  background-color: #8f8f8d;
 }
 
 .orange {
   background-color: #d65a31;
+}
+
+button:last-of-type {
+  flex-basis: 50%;
 }

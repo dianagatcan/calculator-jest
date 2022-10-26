@@ -34,27 +34,26 @@ export default function App() {
     result: undefined,
   });
   let [error, setErrors] = useState(false);
-  const operations = ["*", "/", "+", "-", "^"];
+  const operations = ["*", "/", "+", "-", "^", "√"];
   const keys = [
     "√",
     "^",
-    "%",
     "*",
+    "/",
     7,
     8,
     9,
-    "/",
+    "+",
     4,
     5,
     6,
-    "+",
+    "-",
     1,
     2,
     3,
-    "-",
+    "C",
     ".",
     0,
-    "C",
   ];
 
   function isNum1() {
@@ -96,7 +95,9 @@ export default function App() {
   }
 
   function handleOperation(btn) {
-    if (calc.num1 !== undefined && calc.num2 === undefined) {
+    if (btn === "√") {
+      handleSqrt();
+    } else if (calc.num1 !== undefined && calc.num2 === undefined) {
       setCalc({
         ...calc,
         sign: btn,
@@ -180,9 +181,7 @@ export default function App() {
 
   function decideFunc(btn) {
     setErrors(false);
-    if (btn === "√") {
-      handleSqrt();
-    } else if (btn === ".") {
+    if (btn === ".") {
       handlePoint();
     } else if (btn === "C") {
       handleClear();
@@ -211,6 +210,12 @@ export default function App() {
             key={index}
             id={index}
             text={btn}
+            disabled={
+              (calc.num2 && operations.includes(btn)) ||
+              (!calc.num2 && calc.result && operations.includes(btn))
+                ? true
+                : false
+            }
             onClick={() => {
               decideFunc(btn);
             }}

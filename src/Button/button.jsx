@@ -3,7 +3,7 @@ import "./styles.css";
 
 export default function Button(props) {
   const greyButtons = (val) => {
-    return typeof val === "number" || val === "." || val === "C";
+    return typeof val === "number" || val === ".";
   };
   return (
     <button
